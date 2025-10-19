@@ -1,19 +1,23 @@
+// ENTIDAD DEL DOMINIO - Representa una película en nuestra aplicación
+// Esta clase define la estructura de datos que usa la app internamente
+// Es independiente de la API externa (Clean Architecture)
 class Movie {
-  final bool adult;
-  final String backdropPath;
-  final List<String> genreIds;
-  final int id;
-  final String originalLanguage;
-  final String originalTitle;
-  final String overview;
-  final double popularity;
-  final String posterPath;
-  final DateTime releaseDate;
-  final String title;
-  final bool video;
-  final double voteAverage;
-  final int voteCount;
+  final bool adult;           // Si la película es para adultos
+  final String backdropPath;  // Imagen de fondo de la película
+  final List<String> genreIds; // IDs de los géneros (acción, comedia, etc.)
+  final int id;              // ID único de la película
+  final String originalLanguage; // Idioma original
+  final String originalTitle;    // Título original
+  final String overview;         // Resumen/sinopsis de la película
+  final double popularity;       // Puntuación de popularidad
+  final String posterPath;       // Imagen del póster
+  final DateTime releaseDate;    // Fecha de estreno
+  final String title;           // Título en español
+  final bool video;            // Si tiene video trailer
+  final double voteAverage;    // Promedio de calificaciones
+  final int voteCount;         // Número total de votos
 
+  // Constructor que requiere todos los campos (inmutable)
   Movie({
     required this.adult,
     required this.backdropPath,
