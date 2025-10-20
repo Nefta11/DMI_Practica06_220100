@@ -1,8 +1,8 @@
-# 🎬 Cinemapedia - App de Películas
+#  Cinemapedia - App de Películas
 
 Una aplicación Flutter que muestra información de películas usando la API de The Movie Database (TMDB).
 
-## 📱 Capturas de Pantalla
+##  Capturas de Pantalla
 
 ### App en Funcionamiento
 <img src="images/AppCorriendo.png" alt="App Corriendo" width="100%">
@@ -13,7 +13,7 @@ Una aplicación Flutter que muestra información de películas usando la API de 
 ### Configuración de API
 <img src="images/GeneracionApi.png" alt="Generación API" width="100%">
 
-## 🚀 Características
+##  Características
 
 - ✅ Lista de películas en cartelera
 - ✅ Integración con TMDB API
@@ -22,7 +22,7 @@ Una aplicación Flutter que muestra información de películas usando la API de 
 - ✅ Navegación con Go Router
 - ✅ Variables de entorno seguras
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - **Flutter** 3.35.3
 - **Dart** 3.9.2
@@ -31,7 +31,7 @@ Una aplicación Flutter que muestra información de películas usando la API de 
 - **Go Router** - Navegación
 - **Flutter DotEnv** - Variables de entorno
 
-## 📋 Prerequisitos
+##  Prerequisitos
 
 Antes de comenzar, asegúrate de tener instalado:
 
@@ -40,7 +40,7 @@ Antes de comenzar, asegúrate de tener instalado:
 - Un editor de código (VS Code, Android Studio)
 - Git
 
-## 🏗️ Creación del Proyecto
+##  Creación del Proyecto
 
 ### 1. Crear Proyecto Flutter
 
@@ -87,7 +87,7 @@ lib/
             └── home_screen.dart      # Pantalla principal
 ```
 
-## 📦 Dependencias
+##  Dependencias
 
 ### Agregar Dependencias
 
@@ -120,7 +120,7 @@ flutter:
     - .env                       # Archivo de variables de entorno
 ```
 
-## 🔑 Configuración de API Key
+##  Configuración de API Key
 
 ### 1. Obtener API Key de TMDB
 
@@ -138,7 +138,7 @@ Crea un archivo `.env` en la raíz del proyecto:
 THE_MOVIEDB_KEY=tu_api_key_aqui
 ```
 
-**⚠️ IMPORTANTE**: El archivo `.env` está en `.gitignore` para proteger tu API key.
+** IMPORTANTE**: El archivo `.env` está en `.gitignore` para proteger tu API key.
 
 ### 3. Archivo de Ejemplo
 
@@ -148,7 +148,7 @@ Se incluye `.env.example` como plantilla:
 THE_MOVIEDB_KEY=your_api_key_here
 ```
 
-## 🏃‍♂️ Cómo Ejecutar el Proyecto
+##  Cómo Ejecutar el Proyecto
 
 ### 1. Clonar el Repositorio
 
@@ -184,7 +184,7 @@ Selecciona el dispositivo donde quieres ejecutar:
 - **2**: Edge (Web)
 - **Dispositivo móvil**: Si tienes uno conectado
 
-## 🏛️ Arquitectura del Proyecto
+##  Arquitectura del Proyecto
 
 ### Clean Architecture
 
@@ -214,7 +214,7 @@ UI → Provider → Repository → Datasource → API
 Screen → State → Interface → Implementation → TMDB
 ```
 
-## 🔧 Funcionalidades Principales
+##  Funcionalidades Principales
 
 ### 1. **Obtener Películas en Cartelera**
 - Consume endpoint `/movie/now_playing` de TMDB
