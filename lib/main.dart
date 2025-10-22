@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-
-// Importaciones para la configuración de la app
 import 'package:cinemapedia_220100/config/router/app_router.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart'; // Para leer variables de entorno (.env)
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:cinemapedia_220100/config/theme/app_theme.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart'; // Para manejo de estado global
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Función principal - punto de entrada de la aplicación
-Future<void> main() async {
-  // Carga las variables de entorno (API keys) desde el archivo .env
-  await dotenv.load(fileName: '.env');
-
-  // Inicia la app envuelta en ProviderScope para el manejo de estado con Riverpod
-  runApp(const ProviderScope(child: MainApp()));
+// Función principal donde inicia la aplicación
+Future<void> main() async{
+  
+  await dotenv.load(fileName: '.env'); // Cargamos las variables de entorno del archivo .env antes de ejecutar la app
+  runApp( // runApp inicia la aplicación con el widget principal MainApp
+    const ProviderScope(child: MainApp() )
+  );
 }
 
-// Widget principal de la aplicación
+// Clase principal de la aplicación
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  @override
+@override 
+// También se define el tema de la app y se quita el banner de debug
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: appRouter, // Configuración de rutas/navegación
-      debugShowCheckedModeBanner: false, // Quita el banner de debug
-      theme: AppTheme().getTheme(), // Tema personalizado de la app
-    );
-  }
+      routerConfig: appRouter,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme().getTheme(),
+      );
+    }
 }

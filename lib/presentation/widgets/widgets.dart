@@ -1,1 +1,2 @@
-import 'shared/custom_appbar.dart';
+export 'shared/custom_appbar.dart';
+export 'movies/movie_slideshow.dart';

@@ -3,9 +3,14 @@ import 'package:cinemapedia_220100/domain/entities/movie.dart';
 import 'package:cinemapedia_220100/domain/repositories/movies_repository.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
-  final MoviesDatasource datasource;
-  MovieRepositoryImpl(this.datasource);
 
+/// Fuente de datos que proporciona los métodos para obtener la información de películas.
+final MoviesDatasource datasource;
+/// Se recibe el datasource por el constructor para mantener la inyección de dependencias.
+MovieRepositoryImpl(this.datasource);
+
+/// Retorna la lista de películas que están actualmente en cartelera.
+/// Llama directamente al método `getNowPlaying` del datasource.
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) {
     return datasource.getNowPlaying(page: page);

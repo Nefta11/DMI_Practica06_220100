@@ -1,10 +1,10 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// Clase para centralizar el acceso a variables de entorno
-// Esto mantiene las API keys y configuraciones sensibles separadas del código
+// Clase que se encarga de manejar las variables de entorno del proyecto
 class Environment {
-  // Obtiene la API key de TMDB desde el archivo .env
-  // Si no existe, muestra un mensaje de error en lugar de romper la app
-  static String theMovieDbKey =
-      dotenv.env['THE_MOVIEDB_KEY'] ?? 'No hay api key';
+
+// Variable estática donde se guarda la API key de The Movie DB
+// Si no encuentra la clave en el archivo .env, muestra el texto 'No hay api key'
+static String theMovieDbKey = dotenv.env['THE_MOVIEDB_KEY'] ?? 'No hay api key';
+
 }
