@@ -41,17 +41,18 @@ class MovieHorizontalListview extends StatelessWidget {
 
 class _Slide extends StatelessWidget {
   final Movie movie;
-  
+
   const _Slide({required this.movie});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+    final textStyles = Theme.of(context).textTheme;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: 
-      Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Póster de la película
           SizedBox(
             width: 150,
             child: ClipRRect(
@@ -59,46 +60,73 @@ class _Slide extends StatelessWidget {
               child: Image.network(
                 movie.posterPath,
                 width: 150,
-                loadingBuilder: (context, child, loadingProgress){
+                loadingBuilder: (context, child, loadingProgress) {
                   return child;
-                }
+                },
               ),
             ),
-          )
+          ),
+
+          const SizedBox(height: 5),
+
+          // Título de la película
+          SizedBox(
+            width: 150,
+            child: Text(movie.title, maxLines: 2, style: textStyles.titleSmall),
+          ),
+
+          // Rating de la película
+          SizedBox(
+            width: 150,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.star_half_outlined,
+                  color: Colors.yellow.shade800,
+                  size: 15,
+                ),
+                const SizedBox(width: 3),
+                Text(
+                  '${movie.voteAverage}',
+                  style: textStyles.bodyMedium?.copyWith(
+                    color: Colors.yellow.shade800,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  '${movie.popularity}',
+                  style: textStyles.bodySmall,
+                ),
+              ],
+            ),
+          ),
         ],
-      )
+      ),
     );
   }
 }
 
-class _CurrDate extends StatelessWidget{
+class _CurrDate extends StatelessWidget {
   final String? place;
   final String? formatedData;
 
-  const _CurrDate({
-    this.place,
-    this.formatedData
-  });
+  const _CurrDate({this.place, this.formatedData});
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     final placeStyle = Theme.of(context).textTheme.titleLarge;
     return Container(
-      padding: const EdgeInsets.only(top:10),
+      padding: const EdgeInsets.only(top: 10),
       margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(children: [
-        if (place != null)
-          Text(place!, style: placeStyle),
-        
-        const Spacer(),
-        if(formatedData != null)
-          FilledButton.tonal(
-            onPressed: (){},
-            child: Text(formatedData!)
-          )
-          
-      ])
+      child: Row(
+        children: [
+          if (place != null) Text(place!, style: placeStyle),
+
+          const Spacer(),
+          if (formatedData != null)
+            FilledButton.tonal(onPressed: () {}, child: Text(formatedData!)),
+        ],
+      ),
     );
   }
 }
