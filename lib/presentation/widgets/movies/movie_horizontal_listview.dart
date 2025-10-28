@@ -3,7 +3,7 @@ import 'package:cinemapedia_220100/domain/entities/movie.dart';
 import 'package:cinemapedia_220100/config/helpers/human_formats.dart';
 import 'package:flutter/material.dart';
 
-class MovieHorizontalListview extends StatelessWidget {
+class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
   final String? title;
   final String? subtitle;
@@ -16,22 +16,44 @@ class MovieHorizontalListview extends StatelessWidget {
     this.subtitle,
     this.loadNextPage,
   });
+
+  @override
+  State<MovieHorizontalListview> createState() =>
+      _MovieHorizontalListviewState();
+}
+
+class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   Widget build(BuildContext context) {
+    final ScrollController = ScrollController();
+
+    @override
+    void initState() {
+      super.initState();
+      ScrollController.addListener(() {
+        if (widget.loadNextPage == null) return;
+        if (ScrollController.position.pixels + 200 >= ScrollController.position.maxScrollExtent) {
+        print('Cargando las peliculas siguientes');
+        widget.loadNextPage;
+        }
+      });
+    }
+
     return SizedBox(
       height: 350,
       child: Column(
         children: [
-          if (title != null || subtitle != null)
-            _CurrDate(place: title, formatedData: subtitle),
+          if (widget.title != null || widget.subtitle != null)
+            _CurrDate(place: widget.title, formatedData: widget.subtitle),
 
           Expanded(
             child: ListView.builder(
-              itemCount: movies.length,
+              controller: ScrollController,
+              itemCount: widget.movies.length,
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return _Slide(movie: movies[index]);
+                return _Slide(movie: widget.movies[index]);
               },
             ),
           ),
@@ -63,10 +85,12 @@ class _Slide extends StatelessWidget {
                 movie.posterPath,
                 width: 150,
                 loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress != null){
+                  if (loadingProgress != null) {
                     return const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Center(child: CircularProgressIndicator(strokeWidth: 2.0)),
+                      child: Center(
+                        child: CircularProgressIndicator(strokeWidth: 2.0),
+                      ),
                     );
                   }
                   return FadeIn(child: child);
