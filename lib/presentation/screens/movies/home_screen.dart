@@ -4,6 +4,7 @@ import 'package:cinemapedia_220100/presentation/providers/providers.dart';
 import 'package:cinemapedia_220100/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cinemapedia_220100/presentation/widgets/shared/custom_button_navigationbar.dart';
 
 
 class HomeScreen extends StatelessWidget {// Nombre estático de la ruta para la navegación
@@ -14,7 +15,8 @@ class HomeScreen extends StatelessWidget {// Nombre estático de la ruta para la
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: _HomeView()
+      body: _HomeView(),
+      bottomNavigationBar: CustomButtonNavigationbar(),
     );
 }
 }
