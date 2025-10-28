@@ -1,4 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia_220100/config/helpers/human_formats.dart';
 import 'package:flutter/material.dart';
 
 class MovieHorizontalListview extends StatelessWidget {
@@ -61,7 +64,13 @@ class _Slide extends StatelessWidget {
                 movie.posterPath,
                 width: 150,
                 loadingBuilder: (context, child, loadingProgress) {
-                  return child;
+                  if (loadingProgress != null){
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator(strokeWidth: 2.0)),
+                    );
+                  }
+                  return FadeIn(child: child);
                 },
               ),
             ),
@@ -94,7 +103,7 @@ class _Slide extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  '${movie.popularity}',
+                  HumanFormats.humanReadbleNumber(movie.popularity),
                   style: textStyles.bodySmall,
                 ),
               ],
