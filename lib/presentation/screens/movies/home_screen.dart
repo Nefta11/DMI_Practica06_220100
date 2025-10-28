@@ -1,4 +1,6 @@
 import 'package:cinemapedia_220100/presentation/providers/movies/movies_providers.dart';
+import 'package:cinemapedia_220100/presentation/providers/movies/movie_slideshow_provider.dart';
+import 'package:cinemapedia_220100/presentation/providers/providers.dart';
 import 'package:cinemapedia_220100/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,14 +37,14 @@ void initState() {
 
 @override
 Widget build(BuildContext context) {
-  final nowPlayingMovies = ref.watch( nowPlayingMoviesProvider ); // Obtiene la lista actualizada de películas desde el provider
-  
+  //final nowPlayingMovies = ref.watch( nowPlayingMoviesProvider ); // Obtiene la lista actualizada de películas desde el provider
+  final slideShowMovies = ref.watch(moviesSlidesShowProvide);
   return Column(
     children: [
 
       CustomAppbar(),
 
-      MovieSlideshow(movies: nowPlayingMovies)
+      MovieSlideshow(movies: slideShowMovies)
       ]
     );
   }
