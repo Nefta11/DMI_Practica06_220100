@@ -39,21 +39,56 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
 
-    return Column(
-      children: [
-        const CustomAppbar(),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const CustomAppbar(),
 
-        // Solo muestra las primeras 6 películas en el slideshow
-        MovieSlideshow(movies: nowPlayingMovies.take(6).toList()),
+          // Solo muestra las primeras 6 películas en el slideshow
+          MovieSlideshow(movies: nowPlayingMovies.take(6).toList()),
 
-        MovieHorizontalListview(
-          movies: nowPlayingMovies,
-          title: 'En cines',
-          subtitle: 'Miércoles, 22 de Octubre',
-          loadNextPage: () =>
-              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-        ),
-      ],
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'En cines',
+            subtitle: 'Miércoles, 22 de Octubre',
+            loadNextPage: () =>
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
+
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Próximamente',
+            subtitle: 'Noviembre',
+            loadNextPage: () =>
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
+
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Populares',
+            subtitle: 'Miércoles, 22 de Octubre',
+            loadNextPage: () =>
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
+
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Mejor Calificadas',
+            subtitle: 'Miércoles, 22 de Octubre',
+            loadNextPage: () =>
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
+
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Picardia Mexicana',
+            subtitle: 'Miércoles, 22 de Octubre',
+            loadNextPage: () =>
+                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }
