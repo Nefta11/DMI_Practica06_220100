@@ -33,11 +33,19 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     ref
         .read(nowPlayingMoviesProvider.notifier)
         .loadNextPage(); // Carga la primera página de películas al iniciar la pantalla
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
+    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
+    ref.read(mexicanMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final popular = ref.watch(popularMoviesProvider);
+    final topRated = ref.watch(topRatedMoviesProvider);
+    final upcommingMovies = ref.watch(upcomingMoviesProvider);
+    final mexicanMovies = ref.watch(mexicanMoviesProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -56,35 +64,35 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           ),
 
           MovieHorizontalListview(
-            movies: nowPlayingMovies,
+            movies: upcommingMovies,
             title: 'Próximamente',
             subtitle: 'Noviembre',
             loadNextPage: () =>
-                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
           ),
 
           MovieHorizontalListview(
-            movies: nowPlayingMovies,
+            movies: popular,
             title: 'Populares',
             subtitle: 'Miércoles, 22 de Octubre',
             loadNextPage: () =>
-                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                ref.read(popularMoviesProvider.notifier).loadNextPage(),
           ),
 
           MovieHorizontalListview(
-            movies: nowPlayingMovies,
+            movies: topRated,
             title: 'Mejor Calificadas',
             subtitle: 'Miércoles, 22 de Octubre',
             loadNextPage: () =>
-                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
           ),
 
           MovieHorizontalListview(
-            movies: nowPlayingMovies,
+            movies: mexicanMovies,
             title: 'Picardia Mexicana',
             subtitle: 'Miércoles, 22 de Octubre',
             loadNextPage: () =>
-                ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                ref.read(mexicanMoviesProvider.notifier).loadNextPage(),
           ),
           const SizedBox(height: 10),
         ],
