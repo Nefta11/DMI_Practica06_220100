@@ -106,7 +106,10 @@ class MoviedbDatasource extends MoviesDatasource {
       queryParameters: {
         'page': page,
         'region': 'MX',
-        'withOriginalLanguage': 'es',
+        'with_original_language': 'es',
+        'with_origin_country': 'MX',
+        'sort_by': 'vote_average.desc',
+        'vote_count.gte': 10,
       },
     );
     final movieDBResponse = MovieDbResponse.fromJson(
