@@ -13,7 +13,7 @@ class FullScreenLoader extends StatelessWidget {
       'Todo listo, disfruta de la aplicación',
     ];
 
-    return Stream.periodic(const Duration(milliseconds: 7000), (step) {
+    return Stream.periodic(const Duration(milliseconds: 3000), (step) {
       return messages[step];
     }).take(messages.length);
   }
