@@ -28,12 +28,13 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   void initState() {
     super.initState();
-    
+
     scrollController.addListener(() {
       if (widget.loadNextPage == null) return;
-      
-      if (scrollController.position.pixels + 200 >= scrollController.position.maxScrollExtent) {
-        print('Cargando las peliculas siguientes');
+
+      if (scrollController.position.pixels + 200 >=
+          scrollController.position.maxScrollExtent) {
+        // print('Cargando las peliculas siguientes'); // evita prints en producción
         widget.loadNextPage!();
       }
     });
@@ -47,7 +48,6 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       height: 350,
       child: Column(
@@ -85,14 +85,17 @@ class _Slide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Póster de la película
+          // Póster de la película con tamaño limitado para evitar overflow
           SizedBox(
             width: 150,
+            height: 220,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
                 movie.posterPath,
                 width: 150,
+                height: 220,
+                fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress != null) {
                     return const Padding(
