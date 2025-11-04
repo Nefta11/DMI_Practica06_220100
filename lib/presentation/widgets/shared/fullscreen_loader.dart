@@ -4,7 +4,6 @@ class FullScreenLoader extends StatelessWidget {
   const FullScreenLoader({super.key});
   Stream<String> getLoadingMessages() {
     final messages = <String>[
-      'Bienvenid@ a Cinemapedia - 220100',
       'Estableciendo elementos de comunicación',
       'Conectando con la API de The Movie DB',
       'Obteniendo las peliculas que actualmente se proyectan en cines',
@@ -14,7 +13,7 @@ class FullScreenLoader extends StatelessWidget {
       'Todo listo, disfruta de la aplicación',
     ];
 
-    return Stream.periodic(const Duration(microseconds: 1500), (step) {
+    return Stream.periodic(const Duration(milliseconds: 7000), (step) {
       return messages[step];
     }).take(messages.length);
   }

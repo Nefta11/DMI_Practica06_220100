@@ -6,3 +6,5 @@ export 'movies/movies_repository_provider.dart';
 
 //Reexporta 
 export 'movies/movie_slideshow_provider.dart';
+// Reexporta el provider que indica si las listas principales están cargando
+export 'movies/initialLoading_provider.dart';
