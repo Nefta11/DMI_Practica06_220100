@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cinemapedia_220100/domain/entities/movie.dart';
 import 'package:cinemapedia_220100/config/helpers/human_formats.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
@@ -12,8 +13,8 @@ class MovieHorizontalListview extends StatefulWidget {
   const MovieHorizontalListview({
     super.key,
     required this.movies,
-    this.title,
-    this.subtitle,
+  this.title,
+  this.subtitle,
     this.loadNextPage,
   });
 
@@ -28,13 +29,11 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   void initState() {
     super.initState();
-
     scrollController.addListener(() {
       if (widget.loadNextPage == null) return;
-
       if (scrollController.position.pixels + 200 >=
           scrollController.position.maxScrollExtent) {
-        // print('Cargando las peliculas siguientes'); // evita prints en producción
+        print('Cargado las peliculas siguientes');
         widget.loadNextPage!();
       }
     });
@@ -49,11 +48,11 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: 370,
       child: Column(
         children: [
           if (widget.title != null || widget.subtitle != null)
-            _CurrDate(place: widget.title, formatedData: widget.subtitle),
+            _CurrDate(place: widget.title, formattedDate: widget.subtitle),
 
           Expanded(
             child: ListView.builder(
@@ -74,7 +73,6 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
 
 class _Slide extends StatelessWidget {
   final Movie movie;
-
   const _Slide({required this.movie});
 
   @override
@@ -85,27 +83,27 @@ class _Slide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Póster de la película con tamaño limitado para evitar overflow
           SizedBox(
             width: 150,
-            height: 220,
+            height: 200,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
                 movie.posterPath,
                 width: 150,
-                height: 220,
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress != null) {
                     return const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Center(
-                        child: CircularProgressIndicator(strokeWidth: 2.0),
-                      ),
+                      child: CircularProgressIndicator(strokeWidth: 2),
                     );
                   }
-                  return FadeIn(child: child);
+                  return GestureDetector(
+                    onTap: () => context.push('/movie/${movie.id}'),
+                    child: FadeIn(child: child),
+                  );
+                  //FadeIn(child: child);
                 },
               ),
             ),
@@ -113,33 +111,46 @@ class _Slide extends StatelessWidget {
 
           const SizedBox(height: 5),
 
-          // Título de la película
-          SizedBox(
-            width: 150,
-            child: Text(movie.title, maxLines: 2, style: textStyles.titleSmall),
+          // ✅ Título con altura flexible
+          Flexible(
+            // ✅ Cambiar SizedBox por Flexible
+            child: SizedBox(
+              width: 150,
+              child: Text(
+                movie.title,
+                style: const TextStyle(fontSize: 14),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
 
-          // Rating de la película
+          const SizedBox(height: 3),
+
           SizedBox(
             width: 150,
+            height: 20,
             child: Row(
               children: [
                 Icon(
                   Icons.star_half_outlined,
                   color: Colors.yellow.shade800,
-                  size: 15,
+                  size: 16,
                 ),
                 const SizedBox(width: 3),
                 Text(
-                  '${movie.voteAverage}',
+                  '${movie.voteAverage.toStringAsFixed(1)}',
                   style: textStyles.bodyMedium?.copyWith(
                     color: Colors.yellow.shade800,
                   ),
                 ),
                 const Spacer(),
-                Text(
-                  HumanFormats.humanReadbleNumber(movie.popularity),
-                  style: textStyles.bodySmall,
+                Flexible(
+                  child: Text(
+                    HumanFormats.humanReadbleNumber(movie.popularity),
+                    style: textStyles.bodySmall,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -152,23 +163,23 @@ class _Slide extends StatelessWidget {
 
 class _CurrDate extends StatelessWidget {
   final String? place;
-  final String? formatedData;
+  final String? formattedDate;
 
-  const _CurrDate({this.place, this.formatedData});
+  const _CurrDate({this.place, this.formattedDate});
 
   @override
   Widget build(BuildContext context) {
-    final placeStyle = Theme.of(context).textTheme.titleLarge;
+    final placeStyle = Theme.of(context).textTheme.titleMedium;
+
     return Container(
       padding: const EdgeInsets.only(top: 10),
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           if (place != null) Text(place!, style: placeStyle),
-
-          const Spacer(),
-          if (formatedData != null)
-            FilledButton.tonal(onPressed: () {}, child: Text(formatedData!)),
+          const Spacer(), // ✅ Agregado const
+          if (formattedDate != null)
+            FilledButton.tonal(onPressed: () {}, child: Text(formattedDate!)),
         ],
       ),
     );
