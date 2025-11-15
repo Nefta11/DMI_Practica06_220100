@@ -8,3 +8,6 @@ export 'movies/movies_repository_provider.dart';
 export 'movies/movie_slideshow_provider.dart';
 // Reexporta el provider que indica si las listas principales están cargando
 export 'movies/initialLoading_provider.dart';
+// Reexporta actores y detalle película
+export 'actors/actors_by_movie_provider.dart';
+export 'movies/movie_info_provider.dart';

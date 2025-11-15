@@ -1,4 +1,4 @@
-import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:cinemapedia_matricula/domain/entities/movie.dart';
 
 // Clase abstracta que define el contrato o estructura
 // que debe seguir cualquier fuente de datos (datasource)
@@ -12,4 +12,6 @@ abstract class MoviesDatasource {
   Future<List<Movie>> getUpcoming({int page = 1});
   Future<List<Movie>> getTopRated({int page = 1});
   Future<List<Movie>> getMexicanMovies({int page = 1});
+  // Obtiene una película individual por su ID
+  Future<Movie> getMovieById(String id);
 }

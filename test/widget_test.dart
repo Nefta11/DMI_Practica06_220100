@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:cinemapedia_220100/main.dart';
+import 'package:cinemapedia_matricula/main.dart';
 
 void main() {
   testWidgets('Main app smoke test', (WidgetTester tester) async {

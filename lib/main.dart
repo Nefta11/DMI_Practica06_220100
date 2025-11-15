@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cinemapedia_220100/config/router/app_router.dart';
+import 'package:cinemapedia_matricula/config/router/app_router.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:cinemapedia_220100/config/theme/app_theme.dart';
+import 'package:cinemapedia_matricula/config/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Función principal donde inicia la aplicación

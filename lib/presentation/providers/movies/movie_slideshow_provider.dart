@@ -1,4 +1,4 @@
-import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:cinemapedia_matricula/domain/entities/movie.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'movies_providers.dart';
 

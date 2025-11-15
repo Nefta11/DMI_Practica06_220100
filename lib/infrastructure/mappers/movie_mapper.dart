@@ -1,5 +1,6 @@
-import 'package:cinemapedia_220100/domain/entities/movie.dart';
-import 'package:cinemapedia_220100/infrastructure/models/moviedb/movie_moviedb.dart';
+import 'package:cinemapedia_matricula/domain/entities/movie.dart';
+import 'package:cinemapedia_matricula/infrastructure/models/moviedb/movie_moviedb.dart';
+import 'package:cinemapedia_matricula/infrastructure/models/moviedb/movie_details.dart';
 
 // Clase encargada de transformar (mapear) los datos obtenidos desde la API de MovieDB
 class MovieMapper {
@@ -25,5 +26,27 @@ class MovieMapper {
       video: moviedb.video,
       voteAverage: moviedb.voteAverage,
       voteCount: moviedb.voteCount
+    );
+
+  // Convierte MovieDetails (endpoint /movie/{id}) a Movie
+  static Movie movieDetailsToEntity(MovieDetails details) => Movie(
+      adult: details.adult,
+      backdropPath: (details.backdropPath != '')
+        ? 'https://image.tmdb.org/t/p/w500${details.backdropPath}'
+        : 'https://sd.keepcalms.com/i-w600/keep-calm-poster-not-found.jpg',
+      genreIds: details.genres.map((e) => e.id.toString()).toList(),
+      id: details.id,
+      originalLanguage: details.originalLanguage,
+      originalTitle: details.originalTitle,
+      overview: details.overview,
+      popularity: details.popularity,
+      posterPath: (details.posterPath != '')
+        ? 'https://image.tmdb.org/t/p/w500${details.posterPath}'
+        : 'no-poster',
+      releaseDate: details.releaseDate,
+      title: details.title,
+      video: details.video,
+      voteAverage: details.voteAverage,
+      voteCount: details.voteCount
     );
 }

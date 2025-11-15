@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:cinemapedia_220100/presentation/screens/screens.dart';
+import 'package:cinemapedia_matricula/presentation/screens/screens.dart';
 
 /// Configuración principal de navegación de la aplicación.
 ///

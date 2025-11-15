@@ -1,6 +1,6 @@
-import 'package:cinemapedia_220100/domain/datasources/movies_datasource.dart';
-import 'package:cinemapedia_220100/domain/entities/movie.dart';
-import 'package:cinemapedia_220100/domain/repositories/movies_repository.dart';
+import 'package:cinemapedia_matricula/domain/datasources/movies_datasource.dart';
+import 'package:cinemapedia_matricula/domain/entities/movie.dart';
+import 'package:cinemapedia_matricula/domain/repositories/movies_repository.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
   /// Fuente de datos que proporciona los métodos para obtener la información de películas.
@@ -34,5 +34,10 @@ class MovieRepositoryImpl extends MoviesRepository {
   @override
   Future<List<Movie>> getMexicanMovies({int page = 1}) {
     return datasource.getMexicanMovies(page: page);
+  }
+
+  @override
+  Future<Movie> getMovieById(String id) {
+    return datasource.getMovieById(id);
   }
 }
