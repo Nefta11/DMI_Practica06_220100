@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinemapedia_matricula/presentation/providers/providers.dart';
-import 'package:cinemapedia_matricula/domain/entities/movie.dart';
-import 'package:cinemapedia_matricula/presentation/providers/movies/movies_repository_provider.dart';
+import 'package:cinemapedia_220100/presentation/providers/providers.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:cinemapedia_220100/presentation/providers/movies/movies_repository_provider.dart';
 
 // 🔹 1. Definimos el tipo de función callback
 typedef MovieCallback = Future<List<Movie>> Function({int page});

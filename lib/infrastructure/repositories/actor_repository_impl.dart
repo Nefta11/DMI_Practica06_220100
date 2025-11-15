@@ -1,6 +1,6 @@
-import 'package:cinemapedia_matricula/domain/datasources/actors_datasource.dart';
-import 'package:cinemapedia_matricula/domain/entities/actor.dart';
-import 'package:cinemapedia_matricula/domain/repositories/actors_repository.dart';
+import 'package:cinemapedia_220100/domain/datasources/actors_datasource.dart';
+import 'package:cinemapedia_220100/domain/entities/actor.dart';
+import 'package:cinemapedia_220100/domain/repositories/actors_repository.dart';
 
 class ActorRepositoryImpl extends ActorsRepository {
 

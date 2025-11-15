@@ -1,5 +1,5 @@
-import 'package:cinemapedia_matricula/infrastructure/datasources/actor_moviedb_datasource.dart';
-import 'package:cinemapedia_matricula/infrastructure/repositories/actor_repository_impl.dart';
+import 'package:cinemapedia_220100/infrastructure/datasources/actor_moviedb_datasource.dart';
+import 'package:cinemapedia_220100/infrastructure/repositories/actor_repository_impl.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 

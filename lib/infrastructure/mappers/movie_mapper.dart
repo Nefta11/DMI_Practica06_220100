@@ -1,6 +1,6 @@
-import 'package:cinemapedia_matricula/domain/entities/movie.dart';
-import 'package:cinemapedia_matricula/infrastructure/models/moviedb/movie_moviedb.dart';
-import 'package:cinemapedia_matricula/infrastructure/models/moviedb/movie_details.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:cinemapedia_220100/infrastructure/models/moviedb/movie_moviedb.dart';
+import 'package:cinemapedia_220100/infrastructure/models/moviedb/movie_details.dart';
 
 // Clase encargada de transformar (mapear) los datos obtenidos desde la API de MovieDB
 class MovieMapper {

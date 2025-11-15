@@ -1,4 +1,4 @@
-import 'package:cinemapedia_matricula/domain/entities/actor.dart';
+import 'package:cinemapedia_220100/domain/entities/actor.dart';
 
 
 abstract class ActorsRepository {

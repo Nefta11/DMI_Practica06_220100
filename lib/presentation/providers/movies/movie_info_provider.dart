@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinemapedia_matricula/domain/entities/movie.dart';
-import 'package:cinemapedia_matricula/presentation/providers/movies/movies_repository_provider.dart';
-import 'package:cinemapedia_matricula/domain/repositories/movies_repository.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:cinemapedia_220100/presentation/providers/movies/movies_repository_provider.dart';
+import 'package:cinemapedia_220100/domain/repositories/movies_repository.dart';
 
 // Estado: Map<String, Movie> donde la llave es el id de la película
 final movieInfoProvider = NotifierProvider<MovieInfoNotifier, Map<String, Movie>>(MovieInfoNotifier.new);

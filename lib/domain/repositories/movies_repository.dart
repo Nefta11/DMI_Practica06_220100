@@ -1,4 +1,4 @@
-import 'package:cinemapedia_matricula/domain/entities/movie.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
 
 // Clase abstracta que define el contrato del repositorio de películas.
 // Se encarga de declarar los métodos que obtienen datos del datasource,

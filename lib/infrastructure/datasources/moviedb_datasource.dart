@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 
-import 'package:cinemapedia_matricula/config/constants/environment.dart';
-import 'package:cinemapedia_matricula/domain/datasources/movies_datasource.dart';
 
-import 'package:cinemapedia_matricula/infrastructure/mappers/movie_mapper.dart';
-import 'package:cinemapedia_matricula/infrastructure/models/moviedb/moviedb_response.dart';
-import 'package:cinemapedia_matricula/domain/entities/movie.dart';
-import 'package:cinemapedia_matricula/infrastructure/models/moviedb/movie_details.dart';
+import 'package:cinemapedia_220100/config/constants/environment.dart';
+import 'package:cinemapedia_220100/domain/datasources/movies_datasource.dart';
+import 'package:cinemapedia_220100/infrastructure/mappers/movie_mapper.dart';
+import 'package:cinemapedia_220100/infrastructure/models/moviedb/moviedb_response.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
+import 'package:cinemapedia_220100/infrastructure/models/moviedb/movie_details.dart';
 
 // Esta clase implementa el datasource usando la API de The Movie Database (TMDB).
 // Se conecta al servicio externo para obtener las películas que están en cartelera.

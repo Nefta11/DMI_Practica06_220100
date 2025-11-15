@@ -1,4 +1,4 @@
-import 'package:cinemapedia_matricula/domain/entities/movie.dart';
+import 'package:cinemapedia_220100/domain/entities/movie.dart';
 
 // Clase abstracta que define el contrato o estructura
 // que debe seguir cualquier fuente de datos (datasource)

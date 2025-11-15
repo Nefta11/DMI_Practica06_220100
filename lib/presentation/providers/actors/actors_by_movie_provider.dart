@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinemapedia_matricula/domain/entities/actor.dart';
-import 'package:cinemapedia_matricula/presentation/providers/actors/actors_repository_provider.dart';
+import 'package:cinemapedia_220100/domain/entities/actor.dart';
+import 'package:cinemapedia_220100/presentation/providers/actors/actors_repository_provider.dart';
 
 // 🔹 Provider principal
 final actorsByMovieProvider = NotifierProvider<ActorsByMovieNotifier, Map<String, List<Actor>>>(ActorsByMovieNotifier.new);
