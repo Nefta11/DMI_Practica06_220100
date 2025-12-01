@@ -1,9 +1,11 @@
 import 'package:intl/intl.dart';
 
 class HumanFormats {
-  static String humanReadbleNumber(double number) {
+  static String humanReadbleNumber(double number, [int decimals = 0]) {
     final formatterNumber = NumberFormat.compact(
-      locale: 'en'
+      decimalDigits: decimals,
+      symbol: '',
+      locale: 'en',
     ).format(number);
 
     return formatterNumber;

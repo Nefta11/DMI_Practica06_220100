@@ -14,4 +14,6 @@ abstract class MoviesDatasource {
   Future<List<Movie>> getMexicanMovies({int page = 1});
   // Obtiene una película individual por su ID
   Future<Movie> getMovieById(String id);
+
+  Future<List<Movie>> searchMovies(String query);
 }
