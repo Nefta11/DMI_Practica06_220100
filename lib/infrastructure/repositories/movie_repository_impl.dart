@@ -43,6 +43,6 @@ class MovieRepositoryImpl extends MoviesRepository {
   
   @override
   Future<List<Movie>> searchMovies(String query) {
-    return datasource 
+    return datasource.searchMovies(query);
   }
 }
