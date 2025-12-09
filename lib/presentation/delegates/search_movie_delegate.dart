@@ -32,30 +32,31 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
     _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
       final movies = await searchMovies(query);
+      initialMovies = movies;
       isLoadingStream.add(false);
       debouncedMovies.add(movies);
     });
+  }
 
-    Widget buildResultsAndSuggestions() {
-      return StreamBuilder(
-        initialData: initialMovies,
-        stream: debouncedMovies.stream,
-        builder: (context, snapshot) {
-          final movies = snapshot.data ?? [];
+  Widget buildResultsAndSuggestions() {
+    return StreamBuilder(
+      initialData: initialMovies,
+      stream: debouncedMovies.stream,
+      builder: (context, snapshot) {
+        final movies = snapshot.data ?? [];
 
-          return ListView.builder(
-            itemCount: movies.length,
-            itemBuilder: (context, index) => _MovieItem(
-              movie: movies[index],
-              onMovieSelected: (context, movie) {
-                clearSreams();
-                close(context, movie);
-              },
-            ),
-          );
-        },
-      );
-    }
+        return ListView.builder(
+          itemCount: movies.length,
+          itemBuilder: (context, index) => _MovieItem(
+            movie: movies[index],
+            onMovieSelected: (context, movie) {
+              clearSreams();
+              close(context, movie);
+            },
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -64,8 +65,8 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
       StreamBuilder(
         initialData: false,
         stream: isLoadingStream.stream,
-        builder: (context, snapshot){
-          if(snapshot.data ?? false){
+        builder: (context, snapshot) {
+          if (snapshot.data ?? false) {
             return SpinPerfect(
               duration: const Duration(seconds: 20),
               spins: 10,
@@ -73,37 +74,42 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
               child: IconButton(
                 onPressed: () => query = '',
                 icon: const Icon(Icons.refresh_rounded),
-              )
+              ),
             );
           }
           return FadeIn(
             animate: query.isNotEmpty,
             child: IconButton(
-              onPressed: () =>,
-            )
-          )
+              onPressed: () => query = '',
+              icon: const Icon(Icons.clear),
+            ),
+          );
         },
-      );
-    ]
-
+      ),
+    ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    throw UnimplementedError();
+    return IconButton(
+      onPressed: () {
+        clearSreams();
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back_ios_new_rounded),
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
+    _onQueryChanged(query);
+    return buildResultsAndSuggestions();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
+    _onQueryChanged(query);
+    return buildResultsAndSuggestions();
   }
 }
 
@@ -115,7 +121,7 @@ class _MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyles = Theme.of(context).textTheme;
+    final textStyles = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
 
     return GestureDetector(
@@ -123,7 +129,7 @@ class _MovieItem extends StatelessWidget {
         onMovieSelected(context, movie);
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
           children: [
             SizedBox(
@@ -144,7 +150,7 @@ class _MovieItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(movie.title, style: TextStyles.titleMedium),
+                  Text(movie.title, style: textStyles.titleMedium),
                   (movie.overview.length > 100)
                       ? Text('${movie.overview.substring(0, 100)}...')
                       : Text(movie.overview),
@@ -157,7 +163,7 @@ class _MovieItem extends StatelessWidget {
                       const SizedBox(width: 5),
                       Text(
                         HumanFormats.number(movie.voteAverage, 1),
-                        style: TextStyles.bodyMedium!.copyWith(
+                        style: textStyles.bodyMedium!.copyWith(
                           color: Colors.yellow.shade900,
                         ),
                       ),
