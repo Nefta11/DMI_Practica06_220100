@@ -11,3 +11,5 @@ export 'movies/initialLoading_provider.dart';
 // Reexporta actores y detalle película
 export 'actors/actors_by_movie_provider.dart';
 export 'movies/movie_info_provider.dart';
+// Reexporta provider de búsqueda
+export 'search/search_movies_provider.dart';
