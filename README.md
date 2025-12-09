@@ -1,17 +1,19 @@
 #  Cinemapedia - App de Películas
 
+**Autor:** Neftalí Bautista Cruz  
+**Práctica 07:** Implementación de Búsquedas (Search Delegate)
+
 Una aplicación Flutter que muestra información de películas usando la API de The Movie Database (TMDB).
 
-##  Capturas de Pantalla
+##  Capturas de Pantalla - Práctica 07
 
-### App en Funcionamiento
-<img src="images/AppCorriendo.png" alt="App Corriendo" width="100%">
+### Buscador de Películas
+<img src="images/07/Screenshot_20251208-190015.jpg" alt="Pantalla Principal" width="300">
+<img src="images/07/Screenshot_20251208-190024.jpg" alt="Buscador Activo" width="300">
 
-### Estructura del Proyecto
-<img src="images/Carpetas.png" alt="Carpetas" width="100%">
-
-### Configuración de API
-<img src="images/GeneracionApi.png" alt="Generación API" width="100%">
+### Resultados de Búsqueda
+<img src="images/07/Screenshot_20251208-190114.jpg" alt="Resultados de Búsqueda" width="300">
+<img src="images/07/Screenshot_20251208-190121.jpg" alt="Detalle de Película" width="300">
 
 ##  Características
 
@@ -230,3 +232,45 @@ Screen → State → Interface → Implementation → TMDB
 - Validación de API key
 - Manejo de respuestas vacías
 - Imágenes por defecto para pósters faltantes
+
+---
+
+## 🆕 Cambios en Práctica-07
+
+### Implementación de Búsqueda de Películas
+
+En esta práctica se implementó la funcionalidad de búsqueda de películas utilizando el **SearchDelegate** de Flutter.
+
+#### Archivos Creados/Modificados:
+
+1. **`lib/presentation/delegates/search_movie_delegate.dart`**
+   - Implementación de `SearchDelegate<Movie?>` 
+   - Sistema de debounce (500ms) para optimizar búsquedas
+   - StreamController para manejo de resultados en tiempo real
+   - UI con loading states y animaciones (FadeIn, SpinPerfect)
+   - Widget `_MovieItem` para mostrar resultados con póster, título, overview y rating
+
+2. **`lib/presentation/providers/search/search_movies_provider.dart`**
+   - Provider `searchedMoviesProvider` usando Notifier pattern
+   - Método `searchMoviesByQuery()` para ejecutar búsquedas
+   - Integración con `movieRepositoryProvider`
+
+3. **`lib/infrastructure/datasources/moviedb_datasource.dart`**
+   - Implementación del método `searchMovies(String query)`
+   - Endpoint: `/search/movie` de TMDB API
+   - Filtrado de películas sin póster
+
+4. **`lib/presentation/widgets/shared/custom_appbar.dart`**
+   - Convertido de `StatelessWidget` a `ConsumerWidget`
+   - Integración del botón de búsqueda con `showSearch()`
+   - Navegación automática al detalle de película seleccionada
+
+#### Características Implementadas:
+
+- ✅ Búsqueda en tiempo real con debounce
+- ✅ Indicador de carga durante búsqueda
+- ✅ Lista de resultados con scroll
+- ✅ Navegación a detalle de película
+- ✅ Animaciones fluidas (animate_do)
+- ✅ Manejo de estados vacíos
+- ✅ Integración completa con arquitectura existente
